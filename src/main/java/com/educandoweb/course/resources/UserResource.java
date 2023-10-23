@@ -34,4 +34,10 @@ public class UserResource {
         User userSave = service.insert(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(userSave);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
