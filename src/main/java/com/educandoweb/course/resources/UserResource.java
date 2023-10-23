@@ -31,13 +31,19 @@ public class UserResource {
 
     @PostMapping()
     public ResponseEntity<User> insert(@RequestBody User user) {
-        User userSave = service.insert(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(userSave);
+        user = service.insert(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
+        user = service.update(id, user);
+        return ResponseEntity.ok().body(user);
     }
 }
